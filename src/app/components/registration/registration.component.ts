@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { RegistrationService } from '../../services/registration.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss'],
   standalone: false
 })
-export class RegistrationComponent implements OnInit {
-  step = 1;
+export class RegistrationComponent {
+  currentStep = 1;
 
   form = {
     firstName: '',
@@ -24,13 +24,9 @@ export class RegistrationComponent implements OnInit {
 
   dialogVisible = false;
   dialogTitle = '';
-  dialogMessage = '';  
+  dialogMessage = '';
 
-  constructor(private regService: RegistrationService, private router: Router) {}
-
-  ngOnInit(): void {
-    console.log('RegistrationComponent initialized');
-  }
+  constructor(private regService: RegistrationService) {}
 
   showDialog(title: string, message: string) {
     this.dialogTitle = title;
@@ -38,22 +34,19 @@ export class RegistrationComponent implements OnInit {
     this.dialogVisible = true;
   }
 
-  goToStep2(form: any): void {
-    // Validate the form first
+  onSubmit(form: NgForm): void {
     if (!form.valid) {
-      this.showDialog('Form Error', 'Please fill out all required fields.');
+      this.showDialog('Validation Error', 'Please fill out all required fields correctly.');
       return;
     }
-  
-    // Validate email match
+
     if (this.form.email !== this.form.confirmEmail) {
       this.showDialog('Email Mismatch', 'Email and Confirm Email must match.');
       return;
     }
-  
-    // Proceed to Step 2
-    this.step = 2;
-  
+
+    this.currentStep = 2;
+
     const payload = {
       firstName: this.form.firstName,
       lastName: this.form.lastName,
@@ -61,18 +54,16 @@ export class RegistrationComponent implements OnInit {
       email: this.form.email,
       subscribe: this.form.subscribe
     };
-  
-    // Make the API call
+
     this.regService.register(payload).subscribe({
       next: () => {
         this.showDialog('Success', 'Registration successful!');
-        this.step = 3;
+        this.currentStep = 3;
       },
       error: () => {
-        this.showDialog('Registration Failed', 'Something went wrong. Please try again.');
-        this.step = 1;
+        this.showDialog('Error', 'Something went wrong. Please try again.');
+        this.currentStep = 1;
       }
     });
   }
-  
 }

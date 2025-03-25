@@ -1,14 +1,28 @@
-<!-- Section Header just below the logo bar -->
+<!-- Section Header -->
 <div class="section-header">CONTACT INFORMATION</div>
 
-<div class="container">
-  <div class="stepper">
-    <div [class.active]="step === 1">1<br />REGISTER</div>
-    <div [class.active]="step === 2">2<br />SUBMIT INFO</div>
-    <div [class.active]="step === 3">3<br />COMPLETE</div>
+<!-- Stepper -->
+<div class="stepper-wrapper">
+  <div class="step-item" [class.active]="currentStep >= 1">
+    <div class="step-circle">1</div>
+    <div class="step-line"></div>
+    <div class="step-label">REGISTER</div>
   </div>
+  <div class="step-item" [class.active]="currentStep >= 2">
+    <div class="step-circle">2</div>
+    <div class="step-line"></div>
+    <div class="step-label">SUBMIT INFO</div>
+  </div>
+  <div class="step-item" [class.active]="currentStep === 3">
+    <div class="step-circle">3</div>
+    <div class="step-label">COMPLETE</div>
+  </div>
+</div>
 
-  <form #regForm="ngForm" (ngSubmit)="goToStep2(regForm)" *ngIf="step === 1" novalidate>
+
+<!-- Registration Form -->
+<div class="container">
+  <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)" *ngIf="currentStep === 1" novalidate>
     <p>Please fill in the following required information.</p>
 
     <label><strong>First Name: <span class="required">*</span></strong></label>
@@ -26,10 +40,7 @@
       <option *ngFor="let st of states" [value]="st">{{ st }}</option>
     </select>
 
-    <p>
-      Please provide your email address.<br />
-      All meeting correspondence will be sent via email.
-    </p>
+    <p>Please provide your email address. All meeting correspondence will be sent via email.</p>
 
     <label><strong>Email: <span class="required">*</span></strong></label>
     <input name="email" [(ngModel)]="form.email" required email
@@ -39,29 +50,32 @@
 
     <label><strong>Confirm Email: <span class="required">*</span></strong></label>
     <input name="confirmEmail" [(ngModel)]="form.confirmEmail" required email
+      #confirmEmail="ngModel"
       [ngClass]="{
         invalid:
-          confirmEmail.invalid &&
-          (confirmEmail.touched || regForm.submitted) ||
+          confirmEmail.invalid && (confirmEmail.touched || regForm.submitted) ||
           (form.email !== form.confirmEmail && regForm.submitted)
-      }"
-      #confirmEmail="ngModel" />
+      }" />
 
     <div class="checkbox-wrapper">
-      <input type="checkbox" name="subscribe" [(ngModel)]="form.subscribe" id="subscribe" />
       <label for="subscribe">Subscribe to Newsletter</label>
+      <input type="checkbox" name="subscribe" [(ngModel)]="form.subscribe" id="subscribe" />
     </div>
 
     <button type="submit">Continue</button>
   </form>
+
+  <!-- Confirmation Box -->
+  <div *ngIf="currentStep === 3" class="confirmation-box">
+    <h3>Thank you for registering!</h3>
+    <p>A confirmation email has been sent to <strong>{{ form.email }}</strong>.</p>
+  </div>
 </div>
 
-<!-- Custom Reusable Dialog -->
+<!-- Dialog -->
 <app-dialog
   [visible]="dialogVisible"
   [title]="dialogTitle"
   [message]="dialogMessage"
   (close)="dialogVisible = false">
 </app-dialog>
-
-

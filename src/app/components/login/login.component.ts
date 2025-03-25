@@ -1,27 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DialogService } from '../../shared/dialog.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  standalone: false,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss'],
+  standalone: false
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   password = '';
-  passwordError = false;
-  private sharedPassword = 'Speak2025'; // You can change it
+  private sharedPassword = 'Speak2025';
 
-  constructor(private router: Router) {}
-  ngOnInit() {
-    console.log('LoginComponent initialized');
-  }
-  onLogin() {
+  constructor(private router: Router, private dialogService: DialogService) {}
+
+  onLogin(form: NgForm) {
+    if (form.invalid) {
+      this.dialogService.showDialog('Validation Error', 'Password is required.');
+      return;
+    }
+
     if (this.password === this.sharedPassword) {
       localStorage.setItem('loggedIn', 'true');
       this.router.navigate(['/register']);
     } else {
-      this.passwordError = true;
+      this.dialogService.showDialog('Invalid Password', 'The password you entered is incorrect.');
     }
   }
 }

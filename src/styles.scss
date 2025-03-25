@@ -1,7 +1,251 @@
+// Theme Colors
+$light-blue: #2988b5;
+$dark-blue: #1b5875;
+$light-grey: #dedede;
+$dark-grey: #aaaaaa;
+$text-color: #555555;
+$dark-red: #a93a44;
+$light-red: #ffe8e8;
+
+// Global Layout
 html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
+  background-color: $light-grey;
   font-family: Arial, sans-serif;
-  background-color: #dedede;
-  color: #555555;
+  color: $text-color;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: $light-grey;
+}
+
+// Logo Bar
+.logo-bar {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $light-blue;
+  padding: 1rem 2rem;
+
+  img {
+    max-height: 45px;
+    object-fit: contain;
+  }
+
+  img:before {
+    content: 'Image not found';
+    color: red;
+  }
+}
+
+// Footer
+.footer-bar {
+  flex-shrink: 0;
+  background-color: $light-grey;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  color: $text-color;
+}
+
+// Scrollable Body
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+}
+
+// Section Header (e.g., "Contact Information")
+.section-header {
+  background-color: #2988b5;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+// Form Container Box
+.container {
+  background-color: white;
+  max-width: 550px !important;
+  margin: 40px auto;
+  padding: 2.8rem !important;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+
+// Inputs and Selects
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 15px;
+  border: 1px solid $dark-grey;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+// Invalid Input Styling
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+input.invalid {
+  border: 1px solid $dark-red;
+  background-color: $light-red;
+}
+
+// Submit Button
+button {
+  padding: 10px;
+  background-color: $dark-blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  float: inline-end;
+
+  &:hover {
+    background-color: $light-blue;
+  }
+}
+
+.stepper-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 30px 0;
+  position: relative;
+}
+
+.step-item {
+  position: relative;
+  text-align: center;
+  flex: 1;
+
+  .step-circle {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: #dedede;
+    color: #333;
+    font-weight: bold;
+    z-index: 2;
+    position: relative;
+  }
+
+  .step-line {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: #dedede;
+    z-index: 1;
+  }
+
+  .step-label {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: bold;
+  }
+
+  &.active .step-circle {
+    background-color: #1b5875;
+    color: white;
+  }
+
+  &.active .step-line {
+    background-color: #1b5875;
+  }
+}
+
+// Hide rightmost connector
+.step-item:last-child .step-line {
+  display: none;
+}
+
+
+
+
+// Confirmation Box
+.confirmation-box {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid $light-grey;
+  margin-top: 1rem;
+
+  h3 {
+    color: $dark-blue;
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: $text-color;
+  }
+}
+
+// Toast-style banners
+.banner {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+
+  &.success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  &.error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+}
+
+// Checkbox Alignment
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 1rem 0;
+
+  input[type='checkbox'] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+  }
+
+  label {
+    margin: 0;
+    font-size: 0.95rem;
+    color: $text-color;
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .logo-bar {
+    flex-direction: column;
+  }
 }

@@ -75,8 +75,9 @@
               "buildTarget": "cmw-registration:build:production"
             },
             "development": {
-              "buildTarget": "cmw-registration:build:development"
-            }
+            "buildTarget": "cmw-registration:build:development",
+            "proxyConfig": "proxy.conf.json"
+          }
           },
           "defaultConfiguration": "development"
         },

@@ -15,3 +15,9 @@
     © Copyright 2025
   </footer>
 </div>
+<app-dialog
+  [visible]="dialogVisible"
+  [title]="dialogTitle"
+  [message]="dialogMessage"
+  (close)="dialogVisible = false"
+></app-dialog>
