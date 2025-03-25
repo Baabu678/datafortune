@@ -1,0 +1,67 @@
+<!-- Section Header just below the logo bar -->
+<div class="section-header">CONTACT INFORMATION</div>
+
+<div class="container">
+  <div class="stepper">
+    <div [class.active]="step === 1">1<br />REGISTER</div>
+    <div [class.active]="step === 2">2<br />SUBMIT INFO</div>
+    <div [class.active]="step === 3">3<br />COMPLETE</div>
+  </div>
+
+  <form #regForm="ngForm" (ngSubmit)="goToStep2(regForm)" *ngIf="step === 1" novalidate>
+    <p>Please fill in the following required information.</p>
+
+    <label><strong>First Name: <span class="required">*</span></strong></label>
+    <input name="firstName" [(ngModel)]="form.firstName" required #firstName="ngModel"
+      [ngClass]="{ invalid: firstName.invalid && (firstName.touched || regForm.submitted) }" />
+
+    <label><strong>Last Name: <span class="required">*</span></strong></label>
+    <input name="lastName" [(ngModel)]="form.lastName" required #lastName="ngModel"
+      [ngClass]="{ invalid: lastName.invalid && (lastName.touched || regForm.submitted) }" />
+
+    <label><strong>State: <span class="required">*</span></strong></label>
+    <select name="state" [(ngModel)]="form.state" required #state="ngModel"
+      [ngClass]="{ invalid: state.invalid && (state.touched || regForm.submitted) }">
+      <option value="">Select State</option>
+      <option *ngFor="let st of states" [value]="st">{{ st }}</option>
+    </select>
+
+    <p>
+      Please provide your email address.<br />
+      All meeting correspondence will be sent via email.
+    </p>
+
+    <label><strong>Email: <span class="required">*</span></strong></label>
+    <input name="email" [(ngModel)]="form.email" required email
+      pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      #email="ngModel"
+      [ngClass]="{ invalid: email.invalid && (email.touched || regForm.submitted) }" />
+
+    <label><strong>Confirm Email: <span class="required">*</span></strong></label>
+    <input name="confirmEmail" [(ngModel)]="form.confirmEmail" required email
+      [ngClass]="{
+        invalid:
+          confirmEmail.invalid &&
+          (confirmEmail.touched || regForm.submitted) ||
+          (form.email !== form.confirmEmail && regForm.submitted)
+      }"
+      #confirmEmail="ngModel" />
+
+    <div class="checkbox-wrapper">
+      <input type="checkbox" name="subscribe" [(ngModel)]="form.subscribe" id="subscribe" />
+      <label for="subscribe">Subscribe to Newsletter</label>
+    </div>
+
+    <button type="submit">Continue</button>
+  </form>
+</div>
+
+<!-- Custom Reusable Dialog -->
+<app-dialog
+  [visible]="dialogVisible"
+  [title]="dialogTitle"
+  [message]="dialogMessage"
+  (close)="dialogVisible = false">
+</app-dialog>
+
+

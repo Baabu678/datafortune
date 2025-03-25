@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Login</h2>
+
+  <form #loginForm="ngForm" (ngSubmit)="onLogin()" novalidate>
+    <p>Please enter the case sensitive password from your official invitation.</p>
+
+    <label for="password"><strong>Password:</strong></label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="password"
+      required
+      #passwordField="ngModel"
+      [ngClass]="{ 'invalid': passwordError || (passwordField.invalid && passwordField.touched) }"
+    />
+
+    <div *ngIf="passwordError" class="error-msg">
+      Invalid password. Please try again.
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+</div>

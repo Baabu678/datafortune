@@ -1,0 +1,93 @@
+.section-header {
+    background-color: #1b5875;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .container {
+    background-color: white;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 15px;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input.invalid, select.invalid {
+    border: 1px solid #a93a44;
+    background-color: #ffe8e8;
+  }
+  
+  .required {
+    color: red;
+  }
+  
+  .stepper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    text-align: center;
+  
+    div {
+      flex: 1;
+      padding: 10px;
+      background-color: #dedede;
+      color: #555;
+      border-radius: 5px;
+      font-weight: bold;
+  
+      &.active {
+        background-color: #1b5875;
+        color: white;
+      }
+    }
+  }
+  
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 1rem 0;
+  
+    input[type='checkbox'] {
+      width: 16px;
+      height: 16px;
+    }
+  
+    label {
+      font-weight: normal;
+      margin: 0;
+    }
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1b5875;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #2988b5;
+    }
+  }
+  
