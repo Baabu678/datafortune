@@ -1,0 +1,47 @@
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+  
+  .form-box {
+    background: white;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .confirmation-box h3 {
+    text-align: center;
+    color: #1b5875;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .confirmation-box p {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .btn-center-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .back-btn {
+    background-color: #1b5875;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  
+    &:hover {
+      background-color: #0d3e55;
+    }
+  }
+  
