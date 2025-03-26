@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { RegistrationService } from '../../services/registration.service';
 
 @Component({
@@ -25,16 +24,18 @@ export class RegistrationComponent {
   dialogVisible = false;
   dialogTitle = '';
   dialogMessage = '';
+  isSubmitting = false;
+  showConfirmation: boolean = false;
 
   constructor(private regService: RegistrationService) {}
 
-  showDialog(title: string, message: string) {
+  showDialog(title: string, message: string): void {
     this.dialogTitle = title;
     this.dialogMessage = message;
     this.dialogVisible = true;
   }
 
-  onSubmit(form: NgForm): void {
+  submitRegistrationForm(form: any): void {
     if (!form.valid) {
       this.showDialog('Validation Error', 'Please fill out all required fields correctly.');
       return;
@@ -44,9 +45,6 @@ export class RegistrationComponent {
       this.showDialog('Email Mismatch', 'Email and Confirm Email must match.');
       return;
     }
-
-    this.currentStep = 2;
-
     const payload = {
       firstName: this.form.firstName,
       lastName: this.form.lastName,
@@ -55,15 +53,27 @@ export class RegistrationComponent {
       subscribe: this.form.subscribe
     };
 
+    this.isSubmitting = true;
+    this.currentStep = 2; // SUBMITTING stage
+    
     this.regService.register(payload).subscribe({
       next: () => {
-        this.showDialog('Success', 'Registration successful!');
-        this.currentStep = 3;
+        this.isSubmitting = false;
+        this.currentStep = 3; // Show confirmation only now
       },
       error: () => {
-        this.showDialog('Error', 'Something went wrong. Please try again.');
-        this.currentStep = 1;
+        this.isSubmitting = false;
+        this.currentStep = 1; // Back to form
+        this.showDialog('Registration Failed', 'Something went wrong. Please try again.');
       }
     });
+  }
+
+  // prevent form from submitting on Enter key in dropdown
+  handleEnterKey(event: KeyboardEvent): void {
+    const tag = (event.target as HTMLElement).tagName.toLowerCase();
+    if (event.key === 'Enter' && (tag === 'select' || tag === 'option')) {
+      event.preventDefault();
+    }
   }
 }

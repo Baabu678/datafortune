@@ -1,7 +1,5 @@
-<!-- Section Header -->
 <div class="section-header">CONTACT INFORMATION</div>
 
-<!-- Stepper -->
 <div class="stepper-wrapper">
   <div class="step-item" [class.active]="currentStep >= 1">
     <div class="step-circle">1</div>
@@ -19,11 +17,16 @@
   </div>
 </div>
 
+<div *ngIf="isSubmitting" class="submission-box">
+  <div class="spinner"></div>
+  <p>Submitting your information...</p>
+</div>
 
 <!-- Registration Form -->
-<div class="container">
-  <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)" *ngIf="currentStep === 1" novalidate>
-    <p>Please fill in the following required information.</p>
+<div class="container" *ngIf="!isSubmitting && currentStep === 1">
+  <form #regForm="ngForm"
+  (ngSubmit)="submitRegistrationForm(regForm)" (keydown)="handleEnterKey($event)" novalidate>
+  <p>Please fill in the following required information.</p>
 
     <label><strong>First Name: <span class="required">*</span></strong></label>
     <input name="firstName" [(ngModel)]="form.firstName" required #firstName="ngModel"
@@ -64,15 +67,13 @@
 
     <button type="submit">Continue</button>
   </form>
-
-  <!-- Confirmation Box -->
-  <div *ngIf="currentStep === 3" class="confirmation-box">
-    <h3>Thank you for registering!</h3>
-    <p>A confirmation email has been sent to <strong>{{ form.email }}</strong>.</p>
-  </div>
 </div>
 
-<!-- Dialog -->
+<div class="confirmation-box" *ngIf="!isSubmitting && currentStep === 3">
+  <h3>Thank you for registering!</h3>
+  <p>A confirmation email has been sent to <strong>{{ form.email }}</strong>.</p>
+</div>
+
 <app-dialog
   [visible]="dialogVisible"
   [title]="dialogTitle"

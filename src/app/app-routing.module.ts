@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent, canActivate: [AuthGuard] },
-  { path: 'confirmation', component: ConfirmationComponent, canActivate: [AuthGuard] }
+  { path: 'confirmation', component: ConfirmationComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '/login' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
