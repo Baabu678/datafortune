@@ -1,23 +1,16 @@
 <div class="main-wrapper">
-  <!-- Fixed Header -->
+  
   <header class="logo-bar">
-    <img src="assets/image001.png" alt="DataFortune Logo" />
     <img src="assets/speakcore_logo.png" alt="SpeakCore Logo" />
   </header>
 
-  <!-- Scrollable Body -->
   <main class="content-area">
     <router-outlet></router-outlet>
   </main>
 
-  <!-- Fixed Footer -->
   <footer class="footer-bar">
     © Copyright 2025
   </footer>
 </div>
-<app-dialog
-  [visible]="dialogVisible"
-  [title]="dialogTitle"
-  [message]="dialogMessage"
-  (close)="dialogVisible = false"
-></app-dialog>
+
+<app-dialog [visible]="dialogVisible" [title]="dialogTitle"[message]="dialogMessage" (close)="dialogVisible = false"></app-dialog>

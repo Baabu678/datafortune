@@ -1,7 +1,5 @@
-<!-- LOGIN SECTION HEADER -->
 <div class="section-header">LOGIN</div>
 
-<!-- LOGIN FORM CONTAINER -->
 <div class="container">
   <h2>Login</h2>
   <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" novalidate>
@@ -15,9 +13,7 @@
       [(ngModel)]="password"
       required
       #passwordField="ngModel"
-      [ngClass]="{ 'invalid': passwordField.invalid && loginForm.submitted }"
-    />
-
+      [ngClass]="{ 'invalid': passwordField.invalid && loginForm.submitted }"/>
     <button type="submit">Login</button>
   </form>
 </div>

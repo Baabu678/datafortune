@@ -22,7 +22,7 @@ export class LoginComponent {
     }
 
     if (this.password === this.sharedPassword) {
-      localStorage.setItem('loggedIn', 'true');
+      sessionStorage.setItem('authenticated', 'true');
       this.router.navigate(['/register']);
     } else {
       this.dialogService.showDialog('Invalid Password', 'The password you entered is incorrect.');
