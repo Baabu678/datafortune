@@ -1,8 +1,10 @@
 .dialog-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background-color: rgba(0,0,0,0.3);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +17,7 @@
   border-radius: 0.5rem;
   min-width: 18.75rem;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
 
   h3 {
     margin: 0 0 1rem;
@@ -28,9 +30,9 @@
   button {
     background-color: #1b5875;
     color: white;
-    padding: 8px 16px;
+    padding: 0.5rem 1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     font-weight: bold;
     cursor: pointer;
   }
