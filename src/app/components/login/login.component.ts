@@ -15,8 +15,8 @@ export class LoginComponent {
 
   constructor(private router: Router, private dialogService: DialogService) {}
 
-  onLogin(form: NgForm) {
-    if (form.invalid) {
+  onLogin(form?: NgForm) {
+    if (form && form.invalid) {
       this.dialogService.showDialog('Validation Error', 'Password is required.');
       return;
     }

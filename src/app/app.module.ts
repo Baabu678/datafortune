@@ -10,6 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DialogComponent } from './shared/dialog/dialog.component';
+import { AiBuilderComponent } from './components/ai-builder/ai-builder.component';
+import { JsonParsePipe } from './pipes/json-parse.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { DialogComponent } from './shared/dialog/dialog.component';
     RegistrationComponent,
     LoginComponent,
     ConfirmationComponent,
-    DialogComponent
+    DialogComponent,
+    AiBuilderComponent,
+    JsonParsePipe
   ],
   imports: [
     BrowserModule,

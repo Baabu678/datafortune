@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { AiBuilderComponent } from "./components/ai-builder/ai-builder.component";
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'builder', component: AiBuilderComponent },
   { path: 'register', component: RegistrationComponent, canActivate: [AuthGuard] },
   { path: 'confirmation', component: ConfirmationComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/login' }

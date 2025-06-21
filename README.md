@@ -1,64 +1,23 @@
-<<<<<<< HEAD
-# datafortune
-a simple web application  to allow user to register and login
-=======
-# CmwRegistration
+# Datafortune Demo App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+This repository contains an Angular frontend with a simple .NET 8 Web API backend. The application now includes an experimental **AI Builder** feature that allows you to generate basic UI forms without writing code.
 
-## Development server
+## Prerequisites
+- Node.js and npm
+- .NET SDK 8
 
-To start a local development server, run:
-
+## Running the Angular Frontend
 ```bash
-ng serve
+npm install
+npm start
 ```
+Navigate to `http://localhost:4200` to access the app.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+## Running the .NET Backend
 ```bash
-ng generate component component-name
+dotnet run --project backend
 ```
+The API will listen on `http://localhost:5000` by default.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
->>>>>>> 057fd8a (initial commit)
+## AI Builder
+Open `http://localhost:4200/builder` to create dynamic screens. Provide a screen name and comma separated list of fields. Saved definitions are stored in a SQLite database (`screens.db`).

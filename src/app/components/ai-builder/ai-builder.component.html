@@ -1,0 +1,26 @@
+<div class="builder">
+  <h2>Create Screen</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label>
+      Name:
+      <input formControlName="name" />
+    </label>
+    <label>
+      Fields (comma separated):
+      <input formControlName="fields" />
+    </label>
+    <button type="submit">Save</button>
+  </form>
+
+  <div class="screens" *ngIf="screens.length">
+    <h3>Generated Screens</h3>
+    <div *ngFor="let screen of screens" class="screen">
+      <h4>{{ screen.name }}</h4>
+      <form>
+        <div *ngFor="let f of (screen.definitionJson | jsonParse).fields">
+          <label>{{f}}<input /></label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
